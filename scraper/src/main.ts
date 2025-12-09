@@ -52,7 +52,7 @@ async function main(){
         let colors = [];
         $color.each((_, color) => {
             //background:#291916;
-            colors.push($(color).attr("style").substring(12,17));
+            colors.push($(color).attr("style").substring(12,18));
         })
         let preview_links = [];
         $examples.each((_, example) => {

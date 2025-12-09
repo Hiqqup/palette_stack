@@ -53,6 +53,7 @@ function render_colors() {
   let remainder = props.color_amount - floored_quotient * row_count;
   let cell_height = canvas.height / row_count;
 
+
   let i = 0;
   for (let y = 0; y < row_count; y++){
     let colors_in_row = floored_quotient;
@@ -60,17 +61,20 @@ function render_colors() {
       colors_in_row++;
       remainder--;
     }
+
     const cell_width = canvas.width / colors_in_row;
     for (let x = 0; x < colors_in_row; x++) {
-      ctx.fillStyle = '#' + props.colors[i] ;
+      const hex = '#' + props.colors[i];
+      //console.log(hex)
+      ctx.fillStyle = hex
       ctx.fillRect(x*cell_width, y*cell_height, cell_width, cell_height);
       i++;
     }
   }
 
-  console.log(props.colors);
 }
 onMounted(() => {
+
   render_colors();
 });
 </script>

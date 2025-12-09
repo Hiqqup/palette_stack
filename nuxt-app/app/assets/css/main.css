@@ -2,6 +2,6 @@
 @layer base {
     html {
         font-family: 'Nunito', 'Quicksand', sans-serif;
-
+        @apply bg-zinc-700
     }
 }

@@ -1,6 +1,10 @@
-<script setup lang="ts">
-import twilight_town from "../../public/twilight-town.json";
-const palette = twilight_town;
+<script setup lang="js">
+//import twilight_town from "../../public/twilight-town.json";
+//const palette = twilight_town;
+const props = defineProps({
+  palette: Object,
+})
+//console.log(props.palette.name)
 </script>
 
 <template>
