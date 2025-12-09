@@ -14,12 +14,14 @@ const palette = twilight_town;
     <p class="text-zinc-400"> Created by <span class="text-lime-400 decoration-dotted hover:underline">{{palette.author}}</span></p>
     <p class="text-zinc-400 mt-3 mb-6"> {{ palette.description}}</p>
     <div class="flex items-start ">
-      <Icon name="ic:baseline-favorite" class="text-zinc-400  text-3xl "  />
-      <span class="text-zinc-300 font-extrabold mx-2"> {{palette.like_count}} likes</span>
-      <Icon name="ic:sharp-mark-unread-chat-alt" class="text-zinc-400  text-3xl "  />
-      <span class="text-zinc-300 font-extrabold mx-2"> {{palette.comment_count}} comments</span>
+      <Icon name="ic:baseline-favorite" class="text-zinc-400  text-3xl  hover:text-zinc-200"  />
+      <span class="text-zinc-300 font-extrabold mx-2 hover:text-zinc-100"> {{palette.like_count}} likes</span>
+      <Icon name="ic:sharp-mark-unread-chat-alt" class="text-zinc-400  text-3xl hover:text-zinc-200"  />
+      <span class="text-zinc-300 font-extrabold mx-2 hover:text-zinc-100"> {{palette.comment_count}} comments</span>
     </div>
-    <PaletteCardCanvas :colors="palette.colors" :color_amount="palette.color_count"></PaletteCardCanvas>
+    <PaletteCardCanvas :colors="palette.colors" :color_amount="palette.color_count"
+                       :palette_specs="{hashtag: palette.hashtag, color_count: palette.color_count, download_count: palette.download_count }"></PaletteCardCanvas>
+    <img :src="palette.preview_images[0]" style="image-rendering: crisp-edges;" class="mt-2" alt="prewiew image">
 
     <span class="text-zinc-400 mt-3 mb-6"> Tags: </span>
     <span v-for="(tag, index) in palette.tags" class="text-zinc-100 mt-3 mb-6 decoration-dotted hover:underline">

@@ -3,11 +3,9 @@
 </script>
 
 <template>
-  <div class="relative group mr-4 ">
-    <span class="group-hover:bg-zinc-600 rounded-full inline-block">
+  <div class="relative group mr-4  hover:bg-zinc-600 rounded-full  flex items-center p-0.5">
       <Icon name="ic:outline-file-download" class="text-zinc-400  text-3xl group-hover:text-shadow-zinc-200
 "  />
-    </span>
     <div
 
         class="absolute bottom-full left-1/2
