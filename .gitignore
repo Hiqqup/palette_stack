@@ -140,7 +140,6 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 scraper/data
-nuxt-app/server/data
 
 
 scraper/Palette List.html
