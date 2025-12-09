@@ -11,8 +11,11 @@ let file_names: Array<string>;
     })
 })})();
 
+
 export default defineEventHandler(async (event) => {
-    const files_to_read = file_names.slice(0,10);
+    let from  = getQuery(event).from
+    const files_to_read = file_names.slice(from,Number(from)+10);
+    console.log({from, files_to_read});
     let response =[];
     for (const file of files_to_read) {
         response.push(   await new Promise((resolve, reject)=>{

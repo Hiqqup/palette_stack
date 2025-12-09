@@ -3,6 +3,7 @@
 
 let starting_form = 0;
 async function fetchPalettes (fetch_type){
+  console.log('making query' + starting_form);
   let data= (await fetch_type('/api/getPalettes'
       , { query: { from:starting_form } }
   ));
@@ -29,8 +30,9 @@ onMounted(() => {
 })
 </script>
 <template>
-  <div class="flex items-center" ></div>
+  <div class="flex justify-center flex-wrap" >
   <PaletteCard v-for="(palette, index) in palettes" class="m-4" :palette="palette" :key="index"></PaletteCard>
+    </div>
 </template>
 <style scoped>
   @reference "tailwindcss"
