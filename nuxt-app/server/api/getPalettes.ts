@@ -1,30 +1,37 @@
-
-import  * as fs  from 'fs'
+import { promises as fs } from 'fs'
 import { resolve as path_resolve } from 'path'
 
-const path = path_resolve("./server/data/")
-let file_names: Array<string>;
+const DATA_PATH = path_resolve('./public/data/')
+let file_names: string[] | null = null // persistent in-memory cache
 
-(async()=>{file_names= await new Promise((resolve, reject) => {
-    fs.readdir(path, (err, files) => {
-        resolve(files)
-    })
-})})();
-
+async function loadFileNames() {
+    if (!file_names) {
+        try {
+            file_names = await fs.readdir(DATA_PATH)
+        } catch (err) {
+            console.error('Error reading data directory', err)
+            file_names = []
+        }
+    }
+    return file_names
+}
 
 export default defineEventHandler(async (event) => {
-    let from  = getQuery(event).from
-    const files_to_read = file_names.slice(from,Number(from)+10);
-    console.log({from, files_to_read});
-    let response =[];
+    const from = Number(getQuery(event).from) || 0
+
+    // Load filenames from cache or filesystem
+    const files = await loadFileNames()
+    const files_to_read = files.slice(from, from + 10)
+
+    const response = []
     for (const file of files_to_read) {
-        response.push(   await new Promise((resolve, reject)=>{
-            fs.readFile(path_resolve(path,file), (err, data)=>{
-                resolve(JSON.parse(data.toString()))
-            })
-        }))
+        try {
+            const data = await fs.readFile(path_resolve(DATA_PATH, file), 'utf-8')
+            response.push(JSON.parse(data))
+        } catch (err) {
+            console.error(`Error reading/parsing file ${file}:`, err)
+        }
     }
-  return {
-      response: JSON.stringify(response),
-  }
+
+    return { response: JSON.stringify(response) }
 })

@@ -3,7 +3,7 @@
 
 let starting_form = 0;
 async function fetchPalettes (fetch_type){
-  console.log('making query' + starting_form);
+  //console.log('making query' + starting_form);
   let data= (await fetch_type('/api/getPalettes'
       , { query: { from:starting_form } }
   ));
